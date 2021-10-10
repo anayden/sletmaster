@@ -29,10 +29,10 @@ def index():
 
 @app.get("/seed")
 async def seed():
-    seed_people = True
-    seed_areas = True
-    seed_locations = True
-    seed_events = True
+    seed_people = False
+    seed_areas = False
+    seed_locations = False
+    seed_events = False
     if seed_people:
         await create_people()
     if seed_areas:
