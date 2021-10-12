@@ -23,12 +23,14 @@ class ApplicableGroups(BaseModel):
     smo: bool = False
     sservo: bool = False
     saoseo: bool = False
+    sao: bool = False
+    seo: bool = False
     all: bool = False
 
     @staticmethod
     def total() -> 'ApplicableGroups':
         return ApplicableGroups(spo=True, sso=True, ssho=True, sop=True, smo=True, sservo=True,
-                                saoseo=True, all=True)
+                                saoseo=True, sao=True, seo=True, all=True)
 
 
 class Location(Document):
@@ -71,11 +73,19 @@ class Event(Document):
     parent: Optional[PydanticObjectId] = None
     can_be_parent: bool = False
     groups: ApplicableGroups
-    owner: PydanticObjectId
+    owner: Optional[PydanticObjectId] = None
     location: Optional[PydanticObjectId] = None
+    location_requirements: Optional[str] = None
+    tech_requirements: Optional[str] = None
+    public: Optional[bool] = True
 
     class Collection:
         name = "events"
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: int(v.timestamp() * 1000),
+        }
 
 
 class Paged(Generic[T]):

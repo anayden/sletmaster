@@ -3,7 +3,7 @@ from beanie import init_beanie
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from sletmaster.models import __beanie_models__
+from sletmaster.models import __beanie_models__, Location
 from sletmaster.routers.areas_router import areas_router
 from sletmaster.routers.events_router import events_router
 from sletmaster.routers.locations_router import locations_router
@@ -26,6 +26,27 @@ app.add_middleware(
 def index():
     return "OK"
 
+
+@app.get("/seed_locations")
+async def seed_locations_from_file():
+    if False:
+        lines = open('sletmaster/locations.txt').readlines()
+        pparts =[]
+        for line in lines:
+            parts = [p.strip() for p in line.strip().split(',')]
+            if len(parts) == 3:
+                parent = parts[0]
+                floor = int(parts[1][0])
+                name = parts[2]
+                parent_loc = await Location.find_one(Location.name == parent)
+                if not parent_loc:
+                    parent_loc = await Location.insert_one((Location(name=parent)))
+                parent_loc = await Location.find_one(Location.name == parent)
+                await Location.insert_one(Location(name=name, floor=floor, parent=parent_loc.id))
+            else:
+                name = parts[0]
+                await Location.insert_one(Location(name=name))
+    return OK
 
 @app.get("/seed")
 async def seed():

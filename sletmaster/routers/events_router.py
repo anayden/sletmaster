@@ -1,4 +1,5 @@
-from typing import List, Optional
+import logging
+from typing import List, Optional, Dict
 
 from beanie import PydanticObjectId
 from fastapi import APIRouter
@@ -6,6 +7,7 @@ from fastapi import APIRouter
 from sletmaster.models import Event
 
 events_router = APIRouter()
+logging.basicConfig()
 
 
 @events_router.get("/")

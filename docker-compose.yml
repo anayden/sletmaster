@@ -1,6 +1,14 @@
 version: "3.1"
 
 services:
+  front:
+    container_name: sletmaster-front
+    image: front
+    ports:
+      - "3000:3000"
+    depends_on:
+      - sletmaster
+
   sletmaster:
     container_name: sletmaster
     build:
