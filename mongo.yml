@@ -1,0 +1,37 @@
+version: "3.1"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: spbso
+      MONGO_INITDB_ROOT_PASSWORD: 08c1a9111d
+    networks:
+      - mongo
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    depends_on:
+      - mongo
+    networks:
+      - mongo
+
+
+volumes:
+  mongodata:
+
+networks:
+  mongo:
+    external: true

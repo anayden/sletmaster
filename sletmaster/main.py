@@ -1,7 +1,12 @@
+from secrets import compare_digest
+
 import motor.motor_asyncio
 from beanie import init_beanie
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
+from starlette.responses import Response
 
 from sletmaster.models import __beanie_models__, Location
 from sletmaster.routers.areas_router import areas_router
@@ -22,6 +27,22 @@ app.add_middleware(
 )
 
 
+class CustomHeaderMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        print(request.method)
+        if request.method != 'OPTIONS':
+            secret = request.headers.get("X-SPbSO-Secret", "")
+            print(request.headers)
+            if not compare_digest(secret,
+                                  "49092da65f25e8bcbefa9537a0cf5e6d266712d39c4144feda16cd67b5652949"):
+                return Response(status_code=403, content="Unauthorized")
+        response = await call_next(request)
+        return response
+
+
+app.add_middleware(CustomHeaderMiddleware)
+
+
 @app.get("/")
 def index():
     return "OK"
@@ -31,7 +52,7 @@ def index():
 async def seed_locations_from_file():
     if False:
         lines = open('sletmaster/locations.txt').readlines()
-        pparts =[]
+        pparts = []
         for line in lines:
             parts = [p.strip() for p in line.strip().split(',')]
             if len(parts) == 3:
@@ -47,6 +68,7 @@ async def seed_locations_from_file():
                 name = parts[0]
                 await Location.insert_one(Location(name=name))
     return OK
+
 
 @app.get("/seed")
 async def seed():
@@ -67,11 +89,16 @@ async def seed():
 
 @app.on_event("startup")
 async def startup_event():
+    print('startup')
     client = motor.motor_asyncio.AsyncIOMotorClient(settings.mongo_connection)
+    print(settings.mongo_connection)
+    print('connect')
     await init_beanie(
         database=client[settings.mongo_db], document_models=__beanie_models__
     )
+    print('beanie')
     app.include_router(events_router, prefix="/events", tags=["events"])
     app.include_router(locations_router, prefix="/locations", tags=["locations"])
     app.include_router(people_router, prefix="/people", tags=["people"])
     app.include_router(areas_router, prefix="/areas", tags=["areas"])
+    print('startup done')
