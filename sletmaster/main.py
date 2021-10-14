@@ -29,10 +29,8 @@ app.add_middleware(
 
 class CustomHeaderMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
-        print(request.method)
         if request.method != 'OPTIONS':
             secret = request.headers.get("X-SPbSO-Secret", "")
-            print(request.headers)
             if not compare_digest(secret,
                                   "49092da65f25e8bcbefa9537a0cf5e6d266712d39c4144feda16cd67b5652949"):
                 return Response(status_code=403, content="Unauthorized")
@@ -89,16 +87,12 @@ async def seed():
 
 @app.on_event("startup")
 async def startup_event():
-    print('startup')
     client = motor.motor_asyncio.AsyncIOMotorClient(settings.mongo_connection)
     print(settings.mongo_connection)
-    print('connect')
     await init_beanie(
         database=client[settings.mongo_db], document_models=__beanie_models__
     )
-    print('beanie')
     app.include_router(events_router, prefix="/events", tags=["events"])
     app.include_router(locations_router, prefix="/locations", tags=["locations"])
     app.include_router(people_router, prefix="/people", tags=["people"])
     app.include_router(areas_router, prefix="/areas", tags=["areas"])
-    print('startup done')
