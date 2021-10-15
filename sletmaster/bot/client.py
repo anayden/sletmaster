@@ -14,4 +14,5 @@ class BotClient:
                                       json={"event_name": event.name}) as resp:
             resp.raise_for_status()
 
+
 bot_client = BotClient()

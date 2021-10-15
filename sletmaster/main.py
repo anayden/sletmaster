@@ -49,7 +49,6 @@ async def index():
 @app.on_event("startup")
 async def startup_event():
     client = motor.motor_asyncio.AsyncIOMotorClient(settings.mongo_connection)
-    print(settings.mongo_connection)
     await init_beanie(
         database=client[settings.mongo_db], document_models=__beanie_models__
     )
