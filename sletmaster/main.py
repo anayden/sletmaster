@@ -29,7 +29,7 @@ app.add_middleware(
 
 class CustomHeaderMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
-        if request.method != 'OPTIONS' and request.url.path != "/check_events/99e7a75a477cfb0e67ec7d7862a5a4268a3edbf04e98937e5aa1ada3f7df881a":
+        if request.method != 'OPTIONS' and request.url.path != "/bot/check_events/99e7a75a477cfb0e67ec7d7862a5a4268a3edbf04e98937e5aa1ada3f7df881a":
             secret = request.headers.get("X-SPbSO-Secret", "")
             if not compare_digest(secret,
                                   "49092da65f25e8bcbefa9537a0cf5e6d266712d39c4144feda16cd67b5652949"):
