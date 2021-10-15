@@ -1,4 +1,5 @@
 from datetime import datetime
+from enum import Enum
 from typing import Generic, List, TypeVar, Optional
 
 from beanie import Document, PydanticObjectId
@@ -64,16 +65,34 @@ class EventNews(Document):
         name = "event_news"
 
 
+class EventStatus(str, Enum):
+    created = 'created'
+    prep_issues = 'prep_issues'
+    ready = 'ready'
+    live_issues = 'live_issues'
+    live_ok = 'live_ok'
+    live_in_progress = 'live_in_progress'
+    ended = 'ended'
+    cancelled = 'cancelled'
+    other = 'other'
+
+    @property
+    def needs_query(self) -> bool:
+        return self in (EventStatus.ready, EventStatus.live_issues, EventStatus.live_ok,
+                        EventStatus.live_in_progress)
+
+
 class Event(Document):
     name: str
     start_time: datetime
     end_time: datetime
-    status: Optional[str] = None
+    status: Optional[EventStatus] = EventStatus.created
     status_time: Optional[datetime] = None
     parent: Optional[PydanticObjectId] = None
     can_be_parent: bool = False
     groups: ApplicableGroups
     owner: Optional[PydanticObjectId] = None
+    tg_owner: Optional[str] = None
     location: Optional[PydanticObjectId] = None
     location_requirements: Optional[str] = None
     tech_requirements: Optional[str] = None
@@ -86,6 +105,7 @@ class Event(Document):
         json_encoders = {
             datetime: lambda v: int(v.timestamp() * 1000),
         }
+        use_enum_values = True
 
 
 class Paged(Generic[T]):

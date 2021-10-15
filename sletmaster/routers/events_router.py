@@ -11,7 +11,7 @@ logging.basicConfig()
 
 
 @events_router.get("/")
-async def list() -> List[Event]:
+async def index() -> List[Event]:
     return await Event.all(sort="start_time").to_list()
 
 

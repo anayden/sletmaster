@@ -8,5 +8,5 @@ areas_router = APIRouter()
 
 
 @areas_router.get("/")
-async def list() -> List[Area]:
+async def index() -> List[Area]:
     return await Area.all().to_list()

@@ -9,7 +9,7 @@ people_router = APIRouter()
 
 
 @people_router.get("/")
-async def list() -> List[Person]:
+async def index() -> List[Person]:
     return await Person.all().to_list()
 
 
