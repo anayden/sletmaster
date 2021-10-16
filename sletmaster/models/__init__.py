@@ -98,6 +98,7 @@ class Event(Document):
     location_requirements: Optional[str] = None
     tech_requirements: Optional[str] = None
     public: Optional[bool] = True
+    show_on_map: Optional[bool] = True
 
     class Collection:
         name = "events"
