@@ -93,6 +93,7 @@ class Event(Document):
     groups: ApplicableGroups
     owner: Optional[PydanticObjectId] = None
     tg_owner: Optional[str] = None
+    last_tg_ping: Optional[datetime] = None
     location: Optional[PydanticObjectId] = None
     location_requirements: Optional[str] = None
     tech_requirements: Optional[str] = None

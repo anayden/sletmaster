@@ -33,6 +33,16 @@ async def status_response(event_id: str, status: EventStatus):
     return Response(status_code=200, content=f"OK")
 
 
+@bot_router.get("/check_event/{event_id}")
+async def check_events(event_id: str):
+    event = await Event.get(PydanticObjectId(event_id))
+    if event is None:
+        return Response(status_code=404, content=f"Event {event_id} not found")
+    event.last_tg_ping = datetime.now()
+    await Event.update(event)
+    await bot_client.check_event_status(event)
+
+
 @bot_router.get("/check_events/99e7a75a477cfb0e67ec7d7862a5a4268a3edbf04e98937e5aa1ada3f7df881a")
 async def check_events():
     threshold = timedelta(minutes=5)
@@ -41,4 +51,4 @@ async def check_events():
             continue
         time_left = event.start_time - datetime.now()
         if 0 <= time_left <= threshold:
-            bot_client.check_event_status(event)
+            await bot_client.check_event_status(event)
