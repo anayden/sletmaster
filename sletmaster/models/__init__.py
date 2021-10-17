@@ -22,6 +22,7 @@ class Vote(Document):
     crit_2: conint(gt=0, lt=6)
     crit_3: conint(gt=0, lt=6)
     created_at: datetime
+    user: Optional[str] = None
 
 
 class ApplicableGroups(BaseModel):
