@@ -3,7 +3,7 @@ from enum import Enum
 from typing import Generic, List, TypeVar, Optional
 
 from beanie import Document, PydanticObjectId
-from pydantic import BaseModel
+from pydantic import BaseModel, conint
 
 T = TypeVar("T")
 
@@ -14,6 +14,14 @@ class Area(Document):
 
     class Collection:
         name = "areas"
+
+
+class Vote(Document):
+    event: PydanticObjectId
+    crit_1: conint(gt=0, lt=6)
+    crit_2: conint(gt=0, lt=6)
+    crit_3: conint(gt=0, lt=6)
+    created_at: datetime
 
 
 class ApplicableGroups(BaseModel):
