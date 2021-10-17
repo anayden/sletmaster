@@ -14,6 +14,7 @@ services:
     environment:
       mongo_connection: 'mongodb://spbso:08c1a9111d@mongo:27017/'
       mongo_db: sletmaster
+      bot_url: https://61694bf409e030001712c287.mockapi.io
     networks:
       - mongo
       - web
