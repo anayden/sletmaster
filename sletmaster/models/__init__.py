@@ -123,6 +123,7 @@ class Event(Document):
     public: Optional[bool] = True
     show_on_map: Optional[bool] = True
     competition: Optional[int] = None
+    registration_group: Optional[int] = None
 
     class Collection:
         name = "events"
