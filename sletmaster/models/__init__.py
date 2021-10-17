@@ -51,6 +51,7 @@ class Person(Document):
     tg_id: Optional[str] = None
     vk_id: Optional[str] = None
     is_org: bool = False
+    responsibilities: Optional[str] = None
 
     class Collection:
         name = "people"
