@@ -18,9 +18,9 @@ class Area(Document):
 
 class Vote(Document):
     event: PydanticObjectId
-    crit_1: conint(gt=0, lt=6)
-    crit_2: conint(gt=0, lt=6)
-    crit_3: conint(gt=0, lt=6)
+    crit_1: conint(ge=0, le=5)
+    crit_2: conint(ge=0, le=5)
+    crit_3: conint(ge=0, le=5)
     created_at: datetime
     user: Optional[str] = None
 
