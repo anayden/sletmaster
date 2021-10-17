@@ -24,6 +24,9 @@ class Vote(Document):
     created_at: datetime
     user: Optional[str] = None
 
+    class Collection:
+        name = "votes"
+
 
 class ApplicableGroups(BaseModel):
     spo: bool = False
@@ -131,4 +134,4 @@ class Paged(Generic[T]):
         self.more_pages = more_pages
 
 
-__beanie_models__ = [Person, Location, Area, Event, EventNews]
+__beanie_models__ = [Person, Location, Area, Event, EventNews, Vote]
