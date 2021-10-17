@@ -69,6 +69,16 @@ class Person(Document):
         name = "people"
 
 
+class Participant(Document):
+    name: str
+    brigade: Optional[str] = None
+    requests: Optional[List[PydanticObjectId]] = None
+    registrations: Optional[List[PydanticObjectId]] = None
+
+    class Collection:
+        name = "participants"
+
+
 class EventNews(Document):
     text: str
     created_at: datetime
@@ -135,4 +145,4 @@ class Paged(Generic[T]):
         self.more_pages = more_pages
 
 
-__beanie_models__ = [Person, Location, Area, Event, EventNews, Vote]
+__beanie_models__ = [Person, Location, Area, Event, EventNews, Vote, Participant]

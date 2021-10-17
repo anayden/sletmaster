@@ -13,6 +13,7 @@ from sletmaster.routers.areas_router import areas_router
 from sletmaster.routers.bot_router import bot_router
 from sletmaster.routers.events_router import events_router
 from sletmaster.routers.locations_router import locations_router
+from sletmaster.routers.participants_router import participants_router
 from sletmaster.routers.people_router import people_router
 from sletmaster.routers.votes_router import votes_router
 from sletmaster.settings import settings
@@ -58,4 +59,5 @@ async def startup_event():
     app.include_router(people_router, prefix="/people", tags=["people"])
     app.include_router(areas_router, prefix="/areas", tags=["areas"])
     app.include_router(votes_router, prefix="/votes", tags=["votes"])
+    app.include_router(participants_router, prefix="/participants", tags=["participants"])
     app.include_router(bot_router, prefix="/bot", tags=["bot"])
