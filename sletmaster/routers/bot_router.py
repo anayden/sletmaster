@@ -19,7 +19,9 @@ async def create_link(event_id: str, tg_id: str):
         return Response(status_code=404, content=f"Event {event_id} not found")
     event.tg_owner = tg_id
     await event.save()
-    return Response(status_code=200, content=f"User {tg_id} is now owner of {event_id}")
+    return {
+        "event_name": event.name
+    }
 
 
 @bot_router.put("/status/{event_id}/{status}")
