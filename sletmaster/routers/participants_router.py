@@ -22,7 +22,6 @@ async def get(participant_id: PydanticObjectId) -> Optional[Participant]:
 
 @participants_router.post("/")
 async def create(participant: Participant) -> Participant:
-    participant.created_at = datetime.now()
     result = await Participant.insert_one(participant)
     participant.id = result.inserted_id
     return participant
