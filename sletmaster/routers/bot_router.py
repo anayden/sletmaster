@@ -51,6 +51,6 @@ async def check_events():
     async for event in Event.find():
         if not event.status or not EventStatus(event.status).needs_query:
             continue
-        time_left = event.start_time - datetime.now()
-        if 0 <= time_left <= threshold:
+        time_left: timedelta = event.start_time - datetime.now()
+        if 0 <= time_left.total_seconds() <= threshold.total_seconds():
             await bot_client.check_event_status(event)
