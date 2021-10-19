@@ -32,7 +32,7 @@ async def status_response(event_id: str, status: EventStatus):
     event.status = status
     event.status_time = datetime.now()
     await event.save()
-    return Response(status_code=200, content=f"OK")
+    return Response(status_code=200, content="OK")
 
 
 @bot_router.get("/check_event/{event_id}")

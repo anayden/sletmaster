@@ -50,6 +50,7 @@ class Location(Document):
     name: str
     floor: Optional[int] = None
     parent: Optional[PydanticObjectId] = None
+    brigades: Optional[List[str]] = None
 
     class Collection:
         name = "locations"
@@ -124,6 +125,8 @@ class Event(Document):
     show_on_map: Optional[bool] = True
     competition: Optional[int] = None
     registration_group: Optional[int] = None
+    min_participants: Optional[int] = None
+    max_participants: Optional[int] = None
 
     class Collection:
         name = "events"
