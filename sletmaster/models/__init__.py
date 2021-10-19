@@ -18,10 +18,11 @@ class Area(Document):
 
 class Vote(Document):
     event: PydanticObjectId
-    crit_1: conint(ge=0, le=5)
-    crit_2: conint(ge=0, le=5)
-    crit_3: conint(ge=0, le=5)
+    crit_1: Optional[conint(ge=0, le=5)] = None
+    crit_2: Optional[conint(ge=0, le=5)] = None
+    crit_3: Optional[conint(ge=0, le=5)] = None
     created_at: datetime
+    voted_at: datetime
     user: Optional[str] = None
 
     class Collection:

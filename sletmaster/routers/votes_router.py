@@ -27,13 +27,16 @@ async def create(vote: Vote) -> Vote:
     vote.id = result.inserted_id
     return vote
 
-# @participants_router.put("/{vote_id}")
-# async def update(vote_id: str, vote: Vote) -> Vote:
-#     if str(vote.id) != vote_id:
-#         raise ValueError(f"vote_id = {vote_id}, vote.id = {vote.id}")
-#     await vote.save()
-#     return vote
 
+@votes_router.put("/{vote_id}")
+async def update(vote_id: str, vote: Vote) -> Vote:
+    if str(vote.id) != vote_id:
+        raise ValueError(f"vote_id = {vote_id}, vote.id = {vote.id}")
+    if vote.voted_at is not None:
+        raise ValueError(f"vote_id = {vote_id} already saved")
+    vote.voted_at = datetime.now()
+    await vote.save()
+    return vote
 
 # @participants_router.delete("/{vote_id}")
 # async def delete(vote_id: PydanticObjectId) -> None:
