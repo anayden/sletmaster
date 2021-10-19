@@ -75,6 +75,7 @@ class Participant(Document):
     name: str
     brigade: Optional[str] = None
     requests: Optional[List[PydanticObjectId]] = None
+    any_event_in_groups: Optional[List[int]] = None
     registrations: Optional[List[PydanticObjectId]] = None
 
     class Collection:
