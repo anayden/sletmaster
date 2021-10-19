@@ -36,7 +36,7 @@ async def status_response(event_id: str, status: EventStatus):
 
 
 @bot_router.get("/check_event/{event_id}")
-async def check_events(event_id: str):
+async def check_event(event_id: str):
     event = await Event.get(PydanticObjectId(event_id))
     if event is None:
         return Response(status_code=404, content=f"Event {event_id} not found")
