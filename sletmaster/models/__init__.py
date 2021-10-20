@@ -21,12 +21,15 @@ class Vote(Document):
     crit_1: Optional[conint(ge=0, le=5)] = None
     crit_2: Optional[conint(ge=0, le=5)] = None
     crit_3: Optional[conint(ge=0, le=5)] = None
-    created_at: datetime
-    voted_at: datetime
     user: Optional[str] = None
+    voted_at: Optional[datetime] = None
 
     class Collection:
         name = "votes"
+
+
+class DbVote(Vote):
+    created_at: datetime
 
 
 class ApplicableGroups(BaseModel):
