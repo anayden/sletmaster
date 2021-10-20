@@ -1,9 +1,9 @@
 from datetime import datetime
 from enum import Enum
-from typing import Generic, List, TypeVar, Optional
+from typing import List, TypeVar, Optional
 
 from beanie import Document, PydanticObjectId
-from pydantic import BaseModel, conint
+from pydantic import BaseModel, conint, Json
 
 T = TypeVar("T")
 
@@ -143,15 +143,19 @@ class Event(Document):
         use_enum_values = True
 
 
-class Paged(Generic[T]):
-    items: List[T]
-    size: int
-    more_pages: bool
+class HatEvent(Document):
+    event_type: str
+    created_at: datetime
+    details: Json
 
-    def __init__(self, number: int, items: List[T], more_pages: bool):
-        self.items = items
-        self.number = number
-        self.more_pages = more_pages
+    class Collection:
+        name = "hat_events"
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: int(v.timestamp() * 1000),
+        }
+        use_enum_values = True
 
 
-__beanie_models__ = [Person, Location, Area, Event, EventNews, Vote, Participant]
+__beanie_models__ = [Person, Location, Area, Event, EventNews, Vote, Participant, HatEvent]

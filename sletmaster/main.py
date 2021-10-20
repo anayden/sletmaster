@@ -12,6 +12,7 @@ from sletmaster.models import __beanie_models__
 from sletmaster.routers.areas_router import areas_router
 from sletmaster.routers.bot_router import bot_router
 from sletmaster.routers.events_router import events_router
+from sletmaster.routers.hat_events_router import hat_events_router
 from sletmaster.routers.locations_router import locations_router
 from sletmaster.routers.participants_router import participants_router
 from sletmaster.routers.people_router import people_router
@@ -60,4 +61,5 @@ async def startup_event():
     app.include_router(areas_router, prefix="/areas", tags=["areas"])
     app.include_router(votes_router, prefix="/votes", tags=["votes"])
     app.include_router(participants_router, prefix="/participants", tags=["participants"])
+    app.include_router(hat_events_router, prefix="/hat_events", tags=["hat_events"])
     app.include_router(bot_router, prefix="/bot", tags=["bot"])

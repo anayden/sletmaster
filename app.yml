@@ -7,7 +7,7 @@ services:
       context: .
     command: poetry run uvicorn sletmaster.main:app --port 8000 --host 0.0.0.0 --debug --reload --workers 4
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - ./sletmaster:/app/sletmaster
       - ./pyproject.toml:/app/pyproject.toml
@@ -16,6 +16,21 @@ services:
       mongo_db: demo_app_db
     networks:
       - mongo
+
+  thehat:
+    container_name: thehat
+    build:
+      context: .
+    command: poetry run python sletmaster/thehat/hat.py
+#    ports:
+#      - '9000:9000'
+    volumes:
+      - ./sletmaster:/app/sletmaster
+      - ./pyproject.toml:/app/pyproject.toml
+    environment:
+      mongo_connection: 'mongodb://root:example@localhost:27017/'
+      mongo_db: demo_app_db
+      PYTHONPATH: /app
 
 networks:
   mongo:

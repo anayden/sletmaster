@@ -1,0 +1,66 @@
+{"_id":{"$oid":"615f1a2b36361a0bf06b11ce"},"revision_id":null,"name":"Столовка","floor":null,"parent":null,"brigades":null}
+{"_id":{"$oid":"615f1a2b36361a0bf06b11cf"},"revision_id":null,"name":"Ангар","floor":null,"parent":null,"brigades":null}
+{"_id":{"$oid":"615f1a2b36361a0bf06b11d0"},"name":"Футбольное поле","floor":null,"parent":null}
+{"_id":{"$oid":"615f1a2b36361a0bf06b11d1"},"revision_id":null,"name":"1 учебный корпус","floor":null,"parent":null,"brigades":["СПО Алые Паруса","СПО Белые ночи","СПО Будущее","СПО Высокий Полет"]}
+{"_id":{"$oid":"615f1a2b36361a0bf06b11d2"},"name":"2 учебный корпус","floor":null,"parent":null}
+{"_id":{"$oid":"615f1a2b36361a0bf06b11d3"},"name":"1 жилой корпус","floor":null,"parent":null}
+{"_id":{"$oid":"615f1a2b36361a0bf06b11d4"},"name":"2 жилой корпус","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409cd"},"name":"1 игровая","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409ce"},"name":"2 игровая","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409cf"},"name":"3 игровая","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d0"},"name":"3 игровая","floor":2,"parent":{"$oid":"615f1a2b36361a0bf06b11d3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d1"},"revision_id":null,"name":"1 коттедж","floor":null,"parent":null,"brigades":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d3"},"name":"1 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d1"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d4"},"name":"2 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d1"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d5"},"name":"3 и 4 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d1"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d6"},"name":"3 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d1"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d7"},"name":"4 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d1"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d8"},"name":"1 класс","floor":2,"parent":{"$oid":"615f1a2b36361a0bf06b11d1"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409d9"},"name":"2 класс","floor":2,"parent":{"$oid":"615f1a2b36361a0bf06b11d1"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409da"},"name":"2 С/З","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409db"},"name":"1 игровая","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d4"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409dc"},"name":"1 игровая","floor":2,"parent":{"$oid":"615f1a2b36361a0bf06b11d4"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409dd"},"name":"3 игровая","floor":2,"parent":{"$oid":"615f1a2b36361a0bf06b11d4"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409df"},"name":"1 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d2"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e0"},"name":"2 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d2"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e1"},"name":"3 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d2"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e2"},"name":"4 класс","floor":1,"parent":{"$oid":"615f1a2b36361a0bf06b11d2"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e3"},"name":"1 класс","floor":2,"parent":{"$oid":"615f1a2b36361a0bf06b11d2"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e4"},"name":"2 класс","floor":2,"parent":{"$oid":"615f1a2b36361a0bf06b11d2"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e5"},"name":"3 С/З","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e6"},"name":"3 жилой корпус","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e7"},"name":"1 игровая","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409e6"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e8"},"name":"1 игровая","floor":2,"parent":{"$oid":"6165b0ea0ca3668ce27409e6"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409e9"},"name":"3 коттедж","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409ea"},"name":"3 учебный корпус","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409eb"},"name":"1 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409ea"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409ec"},"name":"2 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409ea"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409ed"},"name":"3 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409ea"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409ee"},"name":"4 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409ea"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409ef"},"name":"1 и 2 класс","floor":2,"parent":{"$oid":"6165b0ea0ca3668ce27409ea"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f0"},"name":"1 класс","floor":2,"parent":{"$oid":"6165b0ea0ca3668ce27409ea"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f1"},"name":"2 класс","floor":2,"parent":{"$oid":"6165b0ea0ca3668ce27409ea"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f2"},"name":"4 коттедж","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f3"},"name":"4 учебный корпус","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f4"},"name":"1 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409f3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f5"},"name":"2 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409f3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f6"},"name":"3 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409f3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f7"},"name":"4 класс","floor":1,"parent":{"$oid":"6165b0ea0ca3668ce27409f3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f8"},"name":"1 класс","floor":2,"parent":{"$oid":"6165b0ea0ca3668ce27409f3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409f9"},"name":"2 класс","floor":2,"parent":{"$oid":"6165b0ea0ca3668ce27409f3"}}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409fa"},"name":"5 коттедж","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409fb"},"name":"6 коттедж","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409fc"},"name":"7 коттедж","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409fd"},"name":"8 коттедж","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce27409ff"},"name":"Баскетбольная площадка","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a00"},"name":"Клуб","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a01"},"name":"Между 1 и 2 жилыми корпусами","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a02"},"name":"Перед 1 жилым корпусом","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a03"},"name":"Перед 1 и 2 жилыми корпусами","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a04"},"name":"Перед 2 С/З","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a05"},"name":"Перед 2 жилым корпусом","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a06"},"name":"Перед 3 жилым корпусом","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a07"},"name":"Перед 3 коттеджем","floor":null,"parent":null}
+{"_id":{"$oid":"6165b0ea0ca3668ce2740a08"},"name":"Перед столовой","floor":null,"parent":null}
+{"_id":{"$oid":"616af0835b89cf0115f9f15a"},"name":"2 коттедж","floor":null,"parent":null}
+{"_id":{"$oid":"616af0b45b89cf0115f9f15b"},"name":"4 жилой корпус","floor":null,"parent":null}
