@@ -30,7 +30,7 @@ async def create(vote: Vote) -> DbVote:
 
 @votes_router.put("/{vote_id}")
 async def update(vote_id: PydanticObjectId, vote: Vote) -> Optional[DbVote]:
-    if str(vote.id) != vote_id:
+    if str(vote.id) != str(vote_id):
         raise ValueError(f"vote_id = {vote_id}, vote.id = {vote.id}")
 
     db_vote = await DbVote.get(vote_id)
@@ -45,7 +45,7 @@ async def update(vote_id: PydanticObjectId, vote: Vote) -> Optional[DbVote]:
     db_vote.crit_3 = vote.crit_3
 
     await db_vote.save()
-    
+
     return db_vote
 
 # @participants_router.delete("/{vote_id}")
