@@ -97,7 +97,7 @@ async def get():
         await hat.random_dist()
         for event_id, participants in hat.registrations.items():
             e = await Event.get(PydanticObjectId(event_id))
-            e.participants = [p.id for p in participants]
+            e.participants = [p.id for p in (participants or [])]
             await Event.update(e)
 
     return None

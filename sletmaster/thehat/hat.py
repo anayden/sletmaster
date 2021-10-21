@@ -32,7 +32,7 @@ class Hat:
         self._events: Dict[str, Event] = {}
         self._participants: List[Participant] = []
         self._applicable_event_ids: Set[str] = set()
-        self._registrations: Dict[str, List[Participant]] = defaultdict(default_factory=list)
+        self._registrations: Dict[str, List[Participant]] = {}
         self._broadcast = broadcast
         # random.setstate(23234324234324)
 
