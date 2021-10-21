@@ -77,9 +77,9 @@ class Hat:
         distribution: List[Participant] = []
         total_distributed_participants = 0
         while event.max_participants > 0 and len(requests) > 0:
-            blat_participants = [r for r in requests if r.id in self._blat_ids]
+            blat_participants = [r for r in requests if str(r.id) in self._blat_ids]
             if event.max_participants >= 2 and len(blat_participants) == 2:
-                requests = [r for r in requests if r.id not in self._blat_ids]
+                requests = [r for r in requests if str(r.id) not in self._blat_ids]
                 distribution.extend(blat_participants)
                 event.max_participants -= 2
             else:
