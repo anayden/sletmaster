@@ -98,7 +98,7 @@ async def get():
         for event_id, participants in hat.registrations.items():
             e = await Event.get(PydanticObjectId(event_id))
             e.participants = [p.id for p in (participants or [])]
-            await Event.update(e)
+            await e.save()
 
     return None
 
