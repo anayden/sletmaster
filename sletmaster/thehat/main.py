@@ -49,7 +49,7 @@ class ConnectionManager:
         await new_event(LiveCountEvent(count=len(self.active_connections)), insert=False)
 
     async def broadcast(self, message: str):
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(1)
         for connection in self.active_connections:
             try:
                 await connection.send_text(message)
@@ -78,7 +78,7 @@ async def new_event(e: BaseModel, insert=True) -> None:
     await manager.broadcast(str(e.json()))
 
 
-@app.get("/")
+@app.get("/start-hat")
 async def get():
     for group_id, group_name in groups.items():
         if group_id > 4:
