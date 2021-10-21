@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 import uuid
 from datetime import datetime
@@ -69,7 +70,8 @@ async def startup_event():
 
 
 async def new_event(e: BaseModel, insert=True) -> None:
-    e = HatEvent(created_at=datetime.now(), details=e.json(), event_type=type(e).__name__)
+    e = HatEvent(created_at=datetime.now(), details=json.dumps(e.json()),
+                 event_type=type(e).__name__)
     if insert:
         res = await HatEvent.insert_one(e)
         e.id = res.inserted_id
