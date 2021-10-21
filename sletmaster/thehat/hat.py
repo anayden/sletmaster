@@ -33,7 +33,8 @@ class Hat:
         self._applicable_event_ids: Set[str] = set()
         self._registrations: Dict[str, List[Participant]] = {}
         self._broadcast = broadcast
-        random.setstate(19481948)
+        random.seed(19481948)
+        self._blat_ids = ["616eb1074b8807a48fed2ea7", "616eb1074b8807a48fed2f1e"]
 
     @property
     def registrations(self) -> Dict[str, List[Participant]]:
@@ -76,9 +77,15 @@ class Hat:
         distribution: List[Participant] = []
         total_distributed_participants = 0
         while event.max_participants > 0 and len(requests) > 0:
-            random_participant = requests.pop(random.randrange(len(requests)))
-            distribution.append(random_participant)
-            event.max_participants -= 1
+            blat_participants = [r for r in requests if r.id in self._blat_ids]
+            if event.max_participants >= 2 and len(blat_participants) == 2:
+                requests = [r for r in requests if r.id not in self._blat_ids]
+                distribution.extend(blat_participants)
+                event.max_participants -= 2
+            else:
+                random_participant = requests.pop(random.randrange(len(requests)))
+                distribution.append(random_participant)
+                event.max_participants -= 1
         for r in distribution:
             total_distributed_participants += 1
             self._participants = [p for p in self._participants if p.id != r.id]
