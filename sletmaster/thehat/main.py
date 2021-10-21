@@ -50,7 +50,7 @@ class ConnectionManager:
         await new_event(LiveCountEvent(count=len(self.active_connections)), insert=False)
 
     async def broadcast(self, message: str):
-        await asyncio.sleep(0.2)
+        await asyncio.sleep(4)
         for connection in self.active_connections:
             try:
                 await connection.send_text(message)
