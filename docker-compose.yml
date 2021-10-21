@@ -19,6 +19,24 @@ services:
       - mongo
       - web
 
+  thehat:
+    container_name: thehat
+    build:
+      context: .
+    command: poetry run uvicorn sletmaster.thehat.main:app --port 9000 --host 0.0.0.0 --debug --reload --workers 4
+    expose:
+      - '9000'
+    volumes:
+      - ./sletmaster:/app/sletmaster
+      - ./pyproject.toml:/app/pyproject.toml
+    environment:
+      mongo_connection: 'mongodb://spbso:08c1a9111d@mongo:27017/'
+      mongo_db: sletmaster
+      bot_url: https://61694bf409e030001712c287.mockapi.io
+    networks:
+      - mongo
+      - web
+
 networks:
   mongo:
     external: true
