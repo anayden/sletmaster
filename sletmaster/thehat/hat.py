@@ -1,5 +1,4 @@
 import random
-from collections import defaultdict
 from typing import List, Dict, Set, Optional
 
 from sletmaster.models import Participant, Event
@@ -34,7 +33,7 @@ class Hat:
         self._applicable_event_ids: Set[str] = set()
         self._registrations: Dict[str, List[Participant]] = {}
         self._broadcast = broadcast
-        # random.setstate(23234324234324)
+        random.setstate(19481948)
 
     @property
     def registrations(self) -> Dict[str, List[Participant]]:
@@ -108,7 +107,8 @@ class Hat:
             best_event_id = self._get_best_large_event_id()
         print(f"*** Distributed {total_distributed_participants} randomly. "
               f"Left: {len(self._participants)}")
-        rd_event = RandomDistEvent(group_id=self._group_id, people_left=left, places_left=total_places,
+        rd_event = RandomDistEvent(group_id=self._group_id, people_left=left,
+                                   places_left=total_places,
                                    distribution=distribution,
                                    events=[self._events[event_id] for event_id in
                                            distribution.keys()])
@@ -138,7 +138,8 @@ class Hat:
             return False
         else:
             print(f'==== Have {total_requests} active requests at step {step}')
-        it_start = IterationStartEvent(group_id=self._group_id, priority=step, total_requests=total_requests,
+        it_start = IterationStartEvent(group_id=self._group_id, priority=step,
+                                       total_requests=total_requests,
                                        events=[self._events[event_id] for event_id in
                                                requests_by_event.keys()],
                                        requests_by_event=requests_by_event)
@@ -161,7 +162,8 @@ class Hat:
             places = best_event.max_participants
             distribution = await self._distribute(best_event, best_event_requests)
 
-            best_small_event_event = GetBestSmallEventEvent(group_id=self._group_id, event=best_event,
+            best_small_event_event = GetBestSmallEventEvent(group_id=self._group_id,
+                                                            event=best_event,
                                                             requests=best_event_requests_cnt,
                                                             places=places,
                                                             selected=distribution)
@@ -171,7 +173,8 @@ class Hat:
             print(f'Selected participants: {[p.name for p in distribution]}')
             print(f'Leftover participants: {len(best_event_requests)}')
         print(f'==== Assigned {total_distributed_participants} out of {total_requests} requests')
-        it_end = IterationEndEvent(group_id=self._group_id, priority=step, total_requests=total_requests,
+        it_end = IterationEndEvent(group_id=self._group_id, priority=step,
+                                   total_requests=total_requests,
                                    completed_requests=total_distributed_participants)
         await self._broadcast(it_end)
         return True
