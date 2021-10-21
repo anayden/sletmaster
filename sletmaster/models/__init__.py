@@ -132,6 +132,7 @@ class Event(Document):
     registration_group: Optional[int] = None
     min_participants: Optional[int] = None
     max_participants: Optional[int] = None
+    participants: Optional[List[PydanticObjectId]] = None
 
     class Collection:
         name = "events"

@@ -6,13 +6,13 @@ from datetime import datetime
 from typing import List
 
 import motor
-from beanie import init_beanie
+from beanie import init_beanie, PydanticObjectId
 from fastapi import FastAPI, WebSocket
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 from starlette.websockets import WebSocketDisconnect
 
-from sletmaster.models import __beanie_models__, HatEvent
+from sletmaster.models import __beanie_models__, HatEvent, Event
 from sletmaster.settings import settings
 from sletmaster.thehat.events.group_start import GroupStartEvent
 from sletmaster.thehat.events.live_count import LiveCountEvent
@@ -50,7 +50,7 @@ class ConnectionManager:
         await new_event(LiveCountEvent(count=len(self.active_connections)), insert=False)
 
     async def broadcast(self, message: str):
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.2)
         for connection in self.active_connections:
             try:
                 await connection.send_text(message)
@@ -95,6 +95,11 @@ async def get():
             priority += 1
             res = await hat.iteration(priority)
         await hat.random_dist()
+        for event_id, participants in hat.registrations.items():
+            e = await Event.get(PydanticObjectId(event_id))
+            e.participants = [p.id for p in participants]
+            await Event.update(e)
+
     return None
 
 

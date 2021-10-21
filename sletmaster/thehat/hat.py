@@ -36,6 +36,10 @@ class Hat:
         self._broadcast = broadcast
         # random.setstate(23234324234324)
 
+    @property
+    def registrations(self) -> Dict[str, List[Participant]]:
+        return self._registrations
+
     async def load(self):
         parent_event = await Event.find_one(Event.registration_group == self._group_id)
         events_list = await Event.find(Event.parent == parent_event.id).to_list()
