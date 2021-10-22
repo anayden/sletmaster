@@ -10,8 +10,8 @@ votes_router = APIRouter()
 
 
 @votes_router.get("/")
-async def index() -> List[Vote]:
-    return await Vote.all().to_list()
+async def index() -> List[DbVote]:
+    return await DbVote.all().to_list()
 
 
 @votes_router.get("/{vote_id}")
