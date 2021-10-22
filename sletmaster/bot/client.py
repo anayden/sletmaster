@@ -7,11 +7,15 @@ from sletmaster.settings import settings
 class BotClient:
     def __init__(self):
         self._session = ClientSession()
-        self._url = settings.bot_url
 
     async def check_event_status(self, event: Event) -> None:
-        async with self._session.post(url=f"{self._url}/check_status/{event.tg_owner}",
-                                      json={"event_name": event.name}) as resp:
+        data = {
+            "secret": '49092da65f25e8bcbefa9537a0cf5e6d266712d39c4144feda16cd67b5652949',
+            "event_id": event.id,
+            "event_name": event.name,
+            "tg_user_id": event.tg_owner
+        }
+        async with self._session.post(url=settings.bot_url, json=data) as resp:
             resp.raise_for_status()
 
 
