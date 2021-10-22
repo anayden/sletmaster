@@ -9,7 +9,9 @@ from sletmaster.bot.client import bot_client
 from sletmaster.models import Event, EventStatus
 
 bot_router = APIRouter()
-logging.basicConfig()
+logging.basicConfig(level=logging.DEBUG)
+
+logger = logging.getLogger(__name__)
 
 
 @bot_router.put("/link/{event_id}/{tg_id}")
@@ -51,12 +53,13 @@ async def check_event(event_id: str):
 async def check_events():
     threshold = timedelta(minutes=5)
     async for event in Event.find():
-        logging.info("Checking event '%s' with status '%s'", event.id, event.status)
+        logger.info("Checking event '%s' with status '%s'", event.id, event.status)
         if not event.status or not EventStatus(event.status).needs_query:
             continue
         time_left: timedelta = event.start_time - datetime.now()
-        logging.info("time_left = %s", time_left)
-        logging.info("time_left.seconds = %d threshold.seconds = %d", time_left.total_seconds(), threshold.total_seconds())
+        logger.info("time_left = %s", time_left)
+        logger.info("time_left.seconds = %d threshold.seconds = %d", time_left.total_seconds(),
+                    threshold.total_seconds())
         if 0 <= time_left.total_seconds() <= threshold.total_seconds():
             event.last_tg_ping = datetime.now()
             await bot_client.check_event_status(event)
