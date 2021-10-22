@@ -115,11 +115,6 @@ class EventStatus(str, Enum):
     cancelled = 'cancelled'
     other = 'other'
 
-    @property
-    def needs_query(self) -> bool:
-        return self in (EventStatus.ready, EventStatus.live_issues, EventStatus.live_ok,
-                        EventStatus.live_in_progress)
-
 
 class Event(Document):
     name: str

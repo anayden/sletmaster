@@ -54,7 +54,7 @@ async def check_events():
     threshold = timedelta(minutes=5)
     async for event in Event.find():
         logger.info("Checking event '%s' with status '%s'", event.id, event.status)
-        if not event.status or not EventStatus(event.status).needs_query:
+        if not event.status == "created":
             continue
         time_left: timedelta = event.start_time - datetime.now()
         logger.info("time_left = %s", time_left)
