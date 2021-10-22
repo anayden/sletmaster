@@ -11,9 +11,9 @@ class BotClient:
     async def check_event_status(self, event: Event) -> None:
         data = {
             "secret": '49092da65f25e8bcbefa9537a0cf5e6d266712d39c4144feda16cd67b5652949',
-            "event_id": event.id,
-            "event_name": event.name,
-            "tg_user_id": event.tg_owner
+            "event_id": str(event.id),
+            "event_name": event.name.strip(),
+            "tg_user_id": int(event.tg_owner)
         }
         async with self._session.post(url=settings.bot_url, json=data) as resp:
             resp.raise_for_status()
