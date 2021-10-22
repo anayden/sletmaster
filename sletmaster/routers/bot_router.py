@@ -33,7 +33,7 @@ async def status_response(event_id: str, status: EventStatus):
     event.status_time = datetime.now()
     await event.save()
     return {
-        "event_name": event.name
+        "name": event.name
     }
 
 
