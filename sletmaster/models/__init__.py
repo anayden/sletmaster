@@ -27,9 +27,19 @@ class Vote(Document):
     class Collection:
         name = "votes"
 
+    class Config:
+        json_encoders = {
+            datetime: lambda v: int(v.timestamp() * 1000),
+        }
+
 
 class DbVote(Vote):
     created_at: datetime
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: int(v.timestamp() * 1000),
+        }
 
 
 class ApplicableGroups(BaseModel):
