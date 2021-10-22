@@ -133,6 +133,8 @@ class Event(Document):
     min_participants: Optional[int] = None
     max_participants: Optional[int] = None
     participants: Optional[List[PydanticObjectId]] = None
+    removed_participants: Optional[List[PydanticObjectId]] = None
+    added_participants: Optional[List[PydanticObjectId]] = None
 
     class Collection:
         name = "events"
