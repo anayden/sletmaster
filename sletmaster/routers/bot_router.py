@@ -60,7 +60,10 @@ async def check_events():
         logger.info("time_left = %s", time_left)
         logger.info("time_left.seconds = %d threshold.seconds = %d", time_left.total_seconds(),
                     threshold.total_seconds())
-        if 0 <= time_left.total_seconds() <= threshold.total_seconds():
+        if 0 <= time_left.total_seconds() <= threshold.total_seconds() and event.tg_owner is not None and event.tg_owner != '0':
             event.last_tg_ping = datetime.now()
-            await bot_client.check_event_status(event)
-            await event.save()
+            try:
+                await bot_client.check_event_status(event)
+                await event.save()
+            except Exception:
+                logger.exception("Failed to send check event message")
