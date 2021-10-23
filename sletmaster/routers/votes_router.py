@@ -48,9 +48,9 @@ async def update(vote_id: PydanticObjectId, vote: Vote) -> Optional[DbVote]:
 
     return db_vote
 
-# @participants_router.delete("/{vote_id}")
-# async def delete(vote_id: PydanticObjectId) -> None:
-#     vote = await Vote.get(vote_id)
-#     if vote is not None:
-#         await vote.delete()
-#     return None
+@votes_router.delete("/{vote_id}")
+async def delete(vote_id: PydanticObjectId) -> None:
+    vote = await Vote.get(vote_id)
+    if vote is not None:
+        await vote.delete()
+    return None
